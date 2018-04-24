@@ -5,6 +5,7 @@
     "watch"       : true,
     "interpreter" : "/usr/bin/python3",
     "instances"   : 1,
-    "autorestart" : true
+    "autorestart" : true,
+    "exec_mode"   : "fork"
   }]
 }
