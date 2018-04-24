@@ -2,7 +2,6 @@
   "apps" : [{
     "name"        : "uphys-srv",
     "script"      : "./app.py",
-    "watch"       : true,
     "interpreter" : "/usr/bin/python3",
     "instances"   : 1,
     "autorestart" : true,
