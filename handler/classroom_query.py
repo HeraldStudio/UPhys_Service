@@ -34,10 +34,13 @@ class ClassroomStudentHandler(BaseHandler):
 
     """
     async def get(self, operator):
-        print(operator)
         if operator == '/question':
-            code = self.get_argument("code")
-            question = (await self.db.classroom_question.get_a_question_by_code(code))[0]
+            code = self.get_argument("code", None)
+            question_id = self.get_argument("question_id", None)
+            if code:
+                question = (await self.db.classroom_question.get_a_question_by_code(code))[0]
+            else:
+                question = await self.db.classroom_question.get_a_question_by_id(question_id)
             question.pop('answer')
             # 删除问题的答案
             self.finish_success(result=question)
