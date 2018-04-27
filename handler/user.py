@@ -77,11 +77,11 @@ class UserHandler(BaseHandler):
             token = user['token']
             self.finish_success(result={'token': token})
         else:
-            uuid = await self.check_password(cardnum,password)
+            uuid = await self.check_password(cardnum, password)
             user = await self.db.user.query_user_by_cardnum(cardnum)
             if not user:
                 name = await self.get_name(uuid)
-                token = await self.db.user.create_new_user(cardnum,name)
+                token = await self.db.user.create_new_user(cardnum, name)
             else:
                 token = user['token']
             # self.set_cookie("token",token)

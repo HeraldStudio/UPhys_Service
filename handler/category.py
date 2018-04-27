@@ -139,7 +139,7 @@ class CategoryHandler(BaseHandler):
         if is_sort:
             id1 = self.get_argument('category_id_1')
             id2 = self.get_argument('category_id_2')
-            await self.db.category.sort(id1,id2)
+            await self.db.category.sort(id1, id2)
         else:
             category_id = self.get_argument("category_id")
             category = self.get_argument("category")

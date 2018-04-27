@@ -34,6 +34,7 @@ class ClassroomStudentHandler(BaseHandler):
 
     """
     async def get(self, operator):
+        print(operator)
         if operator == '/question':
             code = self.get_argument("code")
             question = (await self.db.classroom_question.get_a_question_by_code(code))[0]
@@ -51,6 +52,9 @@ class ClassroomStudentHandler(BaseHandler):
             })
         else:
             raise ResourceNotExistError("操作不存在")
+
+    def options(self, operator):
+        self.finish()
 
 
 
@@ -138,6 +142,9 @@ class ClassroomTeacherHandler(BaseHandler):
         question_id = self.get_argument('question_id')
         await self.db.classroom_question.delete_a_question(question_id)
         self.finish_success(result="ok")
+
+    def options(self, operator):
+        self.finish()
 
 routes.handlers += [
     (r'/classroom/student([A-Za-z_/]*)', ClassroomStudentHandler),
